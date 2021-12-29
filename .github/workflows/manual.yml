@@ -1,0 +1,24 @@
+name: "manual tweet scraps"
+on: [workflow_dispatch]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout projects"
+        uses: actions/checkout@v2
+      - name: "setup-node"
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+          cache: "npm"
+      - name: "npm ci"
+        run: npm ci
+      - name: "npm run exec"
+        env:
+          TWITTER_APP_KEY: ${{secrets.TWITTER_APP_KEY}}
+          TWITTER_APP_SECRET: ${{secrets.TWITTER_APP_SECRET}}
+          TWITTER_ACCESS_TOKEN: ${{secrets.TWITTER_ACCESS_TOKEN}}
+          TWITTER_ACCESS_SECRET: ${{secrets.TWITTER_ACCESS_SECRET}}
+          SCRAPBOX_PAGE_NAME: ${{secrets.SCRAPBOX_PAGE_NAME}}
+        run: npm run exec
