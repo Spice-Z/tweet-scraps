@@ -19,10 +19,11 @@ type Scrap = {
   pageRank: number;
 };
 
-const appKey = process.env.APP_KEY;
-const appSecret = process.env.APP_SECRET;
-const accessToken = process.env.ACCESS_TOKEN;
-const accessSecret = process.env.ACCESS_SECRET;
+const appKey = process.env.TWITTER_APP_KEY;
+const appSecret = process.env.TWITTER_APP_SECRET;
+const accessToken = process.env.TWITTER_ACCESS_TOKEN;
+const accessSecret = process.env.TWITTER_ACCESS_SECRET;
+const scrapBoxPageName = process.env.SCRAPBOX_PAGE_NAME;
 
 const main = async () => {
   if (!appKey || !appSecret || !accessToken || !accessSecret) {
@@ -34,7 +35,7 @@ const main = async () => {
     return;
   }
   const response = await axios.get(
-    "https://scrapbox.io/api/pages/spice-scrap?sort=created&limit=20"
+    `https://scrapbox.io/api/pages/${scrapBoxPageName}?sort=created&limit=20`
   );
   const scraps: [Scrap] = response.data.pages;
   const now = dayjs();
@@ -50,8 +51,9 @@ const main = async () => {
   }
 
   const scrapTexts = targetScrap.map((scrap) => {
+    const url = `https://scrapbox.io/${scrapBoxPageName}/${scrap.title}`;
     return `${scrap.title}
-    ${encodeURI(`https://scrapbox.io/spice-scrap/${scrap.title}`)}
+    ${encodeURI(url)}
     
     `;
   });

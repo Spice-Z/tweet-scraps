@@ -1,4 +1,5 @@
-export APP_KEY=foo
-export APP_SECRET=bar
-export ACCESS_TOKEN=foobar
-export ACCESS_SECRET=barfoo
+export TWITTER_APP_KEY=foo
+export TWITTER_APP_SECRET=bar
+export TWITTER_ACCESS_TOKEN=foobar
+export TWITTER_ACCESS_SECRET=barfoo
+export SCRAPBOX_PAGE_NAME=spice-scrap
