@@ -71,7 +71,8 @@ const main = async () => {
     accessSecret,
   });
 
-  client.v1.tweet(text);
+  const result = await client.v1.tweet(text);
+  console.log({ result });
 };
 
 main();
