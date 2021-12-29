@@ -1,0 +1,4 @@
+export APP_KEY=foo
+export APP_SECRET=bar
+export ACCESS_TOKEN=foobar
+export ACCESS_SECRET=barfoo
